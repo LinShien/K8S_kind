@@ -54,12 +54,18 @@ kubectl get nodes --context kind-name-of-your-cluster # For example: kind-test
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/node.png"></img>
 
+#### To delete your cluster
+##### `Actually, just delete all the container of nodes (including master)`
+```Bash
+kind delete cluster --name name-of-your-cluser # For example: kind delete cluster --name test
+```
+
 ### How to create Cluster with multi nodes
 #### Create a .yaml file first
 ```Bash
 vi name-of-your-config.yaml
 ```
-Content would be like
+##### Content would be like
 ```yaml
 (three nodes cluster)
 kind: Cluster
