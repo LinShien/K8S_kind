@@ -30,7 +30,7 @@ chmod 777 ./kind                          # make kind executable
 
 mv kind /usr/bin/
 ```
-### 建立 Kubernetes Cluster
+### 1.建立 Kubernetes Cluster
 ```Bash
 kind create cluster --name name-of-your-cluster   # 第一次運行會 pull image of kindest/node(1.6GB) from docker hub 
 ```
@@ -59,8 +59,8 @@ kubectl get nodes --context kind-name-of-your-cluster # For example: kind-test
 ```Bash
 kind delete cluster --name name-of-your-cluser # For example: kind delete cluster --name test
 ```
-
-### How to create Cluster with multi nodes
+----
+### 2.How to create Cluster with multi nodes
 #### Create a .yaml file first
 ```Bash
 vi name-of-your-config.yaml
@@ -88,7 +88,8 @@ kubectl get nodes
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/multi_nodes2.png"></img>
 
-### Deploy your container into cluster
+----
+### 3.Deploy your container into cluster
 ```text
 施工中
 ```
