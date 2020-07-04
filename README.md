@@ -7,7 +7,7 @@
 </p>
 
 ```text
-Kind 為一個工具，能幫助使用者建立一個 'containerized' Kubernetes clutser，且所有的節點皆為 'containerized' nodes
+Kind(Kubernetes inside docker) 為一個工具，能幫助使用者建立一個 'containerized' Kubernetes clutser，且所有的節點皆為 'containerized' nodes
 kubectl is a tool to manage your kubernetes cluster including deployment of containers and services
 ```
 
@@ -36,11 +36,13 @@ kind create cluster --name name-of-your-cluster   # 第一次運行會 pull imag
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/create_cluster.png" width="750" height="300"></img>
 
+
 #### Check your clusters use kubectl
 ```Bash
 kubectl cluster-info --context kind-name-for-your-cluster  # For example: kind-test
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/cluster_info.png"  width="750" ></img>
+
 
 #### Check your clusters built by kind
 ```Bash
@@ -48,11 +50,13 @@ kind get clusters
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/get_clusters.png"></img>
 
+
 #### Check the node of your cluster (just one which is master)
 ```Bash
 kubectl get nodes --context kind-name-of-your-cluster # For example: kind-test
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/node.png"></img>
+
 
 #### To delete your cluster
 ##### `Actually, just delete all the container of nodes (including master)`
@@ -82,11 +86,13 @@ nodes:
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/multi_nodes.png"></img>
 
+
 #### Check the the nodes of your cluster you just created
 ```Bash
 kubectl get nodes
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/multi_nodes2.png"></img>
+
 
 ----
 ### 3.Deploy your container into cluster
@@ -103,12 +109,14 @@ kubectl describe deployments
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/get_deployments.png">
 
+
 #### Check your container is on which node
 ```
 kubectl get pods         # get the name of your pods 
 kubectl describe pods
 ```
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/pods.png">
+
 
 #### How to get to the application inside your container (Docker inside Docker)
 * Use Service object
@@ -121,6 +129,7 @@ kubectl describe service/kubernetes-bootcamp
 * you can see that Port: 8080/TCP is the port inside your container and NodePort: 31995/TCP is port of your physical node port mapped with container port
 <img src="https://github.com/LinShien/K8S_kind/blob/master/images/service.png">
 
+
 * Now you can access your app with NodeIP:NodePort
 * To get the NodeIP where your container is deployed
 
@@ -128,6 +137,7 @@ kubectl describe service/kubernetes-bootcamp
 kubectl describe pods kubernetes-bootcamp | grep -i node
 ```
 <img src = "https://github.com/LinShien/K8S_kind/blob/master/images/NodeIP.png">
+
 
 ```Bash
 curl 172.18.0.3:31995
