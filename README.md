@@ -90,7 +90,47 @@ kubectl get nodes
 
 ----
 ### 3.Deploy your container into cluster
-```text
-施工中
+#### To deploy your app to cluster
+```Bash
+kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 # --image image-of-your-container-to-deploy 
 ```
-<img src="https://i.pinimg.com/originals/26/ac/06/26ac065e9899c74f360ccfbd351108ad.jpg" height = 500 width = 500></img>
+
+#### To check your deployments
+```Bash
+kubectl get deployments
+
+kubectl describe deployments
+```
+<img src="https://github.com/LinShien/K8S_kind/blob/master/images/get_deployments.png">
+
+#### Check your container is on which node
+```
+kubectl get pods         # get the name of your pods 
+kubectl describe pods
+```
+<img src="https://github.com/LinShien/K8S_kind/blob/master/images/pods.png">
+
+#### How to get to the application inside your container (Docker inside Docker)
+* Use Service object
+```
+kubectl expose deployment/kubernetes --type='NodePort' --port 8080
+
+kubectl describe service/kubernetes-bootcamp
+```
+
+* you can see that Port: 8080/TCP is the port inside your container and NodePort: 31995/TCP is port of your physical node port mapped with container port
+<img src="https://github.com/LinShien/K8S_kind/blob/master/images/service.png">
+
+* Now you can access your app with NodeIP:NodePort
+* To get the NodeIP where your container is deployed
+
+```Bash
+kubectl describe pods kubernetes-bootcamp | grep -i node
+```
+<img src = "https://github.com/LinShien/K8S_kind/blob/master/images/NodeIP.png">
+
+```Bash
+curl 172.18.0.3:31995
+```
+* Congrats !!!
+<img src = "https://github.com/LinShien/K8S_kind/blob/master/images/result.png">
